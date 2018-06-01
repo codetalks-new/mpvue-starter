@@ -19,10 +19,10 @@
     "mpvue": "^1.0.12",
     "tslib": "^1.9.1",
     "vue": "^2.5.16",
-    "vue-property-decorator": "^6.0.0",
-    "vue-template-compiler": "^2.5.16"
+    "vue-property-decorator": "^6.0.0"
   },
   "devDependencies": {
+    "vue-template-compiler": "^2.5.16",
     "awesome-typescript-loader": "^4.0",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
