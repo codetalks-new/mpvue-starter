@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "eg2.tslint",
+    "dbaeumer.vscode-eslint",
+    "EditorConfig.editorconfig",
+    "octref.vetur",
+    "banxi.mpvue-snippets",
+    "esbenp.prettier-vscode"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint-eslint-rules"],
+  "jsRules": {},
+  "rules": {
+    "ban": [
+      true,
+      "eval",
+      "alert",
+      "confirm",
+      ["String", "normalize", "在小程序中有兼容问题"],
+      ["Array", "values", "在小程序中有兼容问题"],
+      ["Proxy", "*", "在小程序中有兼容问题"],
+      ["*", "forEach", "建议使用普通的 forof 循环"]
+    ]
+  },
+  "rulesDirectory": []
+}
