@@ -1,6 +1,6 @@
-# meynote
+# mpvue-starter
 
-mini keynote
+小程序开发最佳实践的起始框架
 
 ## Build Setup
 
@@ -8,7 +8,7 @@ mini keynote
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# run debug
 npm run dev
 
 # build for production with minification

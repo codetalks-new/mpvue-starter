@@ -7,11 +7,16 @@ prepare:
 	npm install
 
 .PHONY: run
-run: prepare 
+run: prepare
 	npm run dev
 
 .PHONY: build
 build:prepare
 	npm run build --report
+
+.PHONY: clear
+clear:
+	rm -rf ${DIST_DIR}
+
 
 

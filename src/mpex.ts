@@ -1,6 +1,10 @@
 import * as mpex from "mpex";
+import Images from "@/images";
 export * from "mpex";
 
 export function showWarn(title: string) {
-  mpex.showToast(title);
+  wx.showToast({
+    title,
+    image: Images.icWarnOutlinePng
+  });
 }

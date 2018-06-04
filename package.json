@@ -1,12 +1,12 @@
 {
-  "name": "guet-mp",
+  "name": "mpvue-starter",
   "version": "1.0.0",
-  "description": "Mini Program for guet",
+  "description": "Mini Program Best Practice starter",
   "author": "banxi1988 <banxi1988@gmail.com>",
   "private": true,
   "scripts": {
-    "predev": "node gen_page_urls.js",
-    "prestart": "node gen_page_urls.js",
+    "predev": "node gen_res.js",
+    "prestart": "node gen_res.js",
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "rimraf dist && node build/build.js",
