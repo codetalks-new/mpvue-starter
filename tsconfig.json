@@ -5,7 +5,7 @@
     // 这可以对 `this` 上的数据属性进行更严格的推断
     "strict": true,
     // 如果使用 webpack 2+ 或 rollup，可以利用 tree-shake:
-    "module": "es2015",
+    "module": "ES2015",
     // ES6 大部分 API 可用, 详情参考下面的微信 API 说明。
     // https://developers.weixin.qq.com/miniprogram/dev/devtools/details.html#%E5%AE%A2%E6%88%B7%E7%AB%AFes6-api-%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5
     // ES6 is ES2015
@@ -26,7 +26,8 @@
     "noImplicitAny": false,
     "skipLibCheck": true,
     "strictPropertyInitialization": false,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules"],

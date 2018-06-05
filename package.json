@@ -22,7 +22,6 @@
     "vue-property-decorator": "^6.0.0"
   },
   "devDependencies": {
-    "vue-template-compiler": "^2.5.16",
     "awesome-typescript-loader": "^4.0",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
@@ -74,10 +73,11 @@
     "ts-loader": "^3.5.0",
     "tslint": "^5.10.0",
     "tslint-eslint-rules": "^5.2.0",
-    "typescript": "^2.8.3",
+    "typescript": "^3.0.0-dev.20180602",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "url-loader": "^0.5.8",
     "vue-style-loader": "^3.0.1",
+    "vue-template-compiler": "^2.5.16",
     "webpack": "^2.6.1",
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware-hard-disk": "^1.10.1",

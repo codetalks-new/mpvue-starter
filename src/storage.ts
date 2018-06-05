@@ -40,11 +40,10 @@ function asSetting(defaultValue: any, key?: string) {
  * `autoLogin` 和 `username` 是两个示范属性，可以删除
  */
 class Settings {
-  @asSetting(false, "isAutoLogin")
-  autoLogin: boolean;
-
-  @asSetting(null)
-  username: string;
+  // @asSetting(false, "isAutoLogin")
+  // autoLogin: boolean = false;
+  // @asSetting(null)
+  // username: string = "";
 }
 
 export const settings = new Settings();
