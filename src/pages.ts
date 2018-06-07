@@ -4,7 +4,9 @@
  * 小程序页面 url 枚举列表
  */
 const enum PageUrls {
-  home = "pages/home/main"
+  home = "pages/home/main",
+
+  other = "pages/other/main"
 }
 
 export default PageUrls;

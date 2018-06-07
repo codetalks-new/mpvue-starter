@@ -2,6 +2,10 @@
   <div class="page">
     <view class="weui-cells__title">WeuiCell 使用示例</view>
     <view class="weui-cells weui-cells_after-title">
+      <weui-nav-cell
+       hover-class="navigator-hover"
+       url="/pages/other/main"
+      title="标题文案"  detail="说明文案" />
       <weui-cell title="标题文案"  detail="说明文案" />
       <weui-cell icon="/static/images/ic_warn_outline.png" title="标题文案"  detail="说明文案" />
       <weui-cell title="标题文案"  access="true"/>
@@ -31,4 +35,7 @@
 
 <style lang="less">
 @import "~@/styles.less";
+.navigator-hover {
+  color: blue;
+}
 </style>

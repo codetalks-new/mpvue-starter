@@ -4,6 +4,7 @@ import eventBus from "@/eventBus";
 import * as mpex from "@/mpex";
 import Log from "@/logbox";
 import WeuiCell from "@/components/weui/WeuiCell.vue";
+import WeuiNavCell from "@/components/weui/WeuiNavCell.vue";
 import WeuiInputCell from "@/components/weui/WeuiInputCell.vue";
 import WeuiSwitchCell from "@/components/weui/WeuiSwitchCell.vue";
 import WeuiCheckboxCell from "@/components/weui/WeuiCheckboxCell.vue";
@@ -13,6 +14,7 @@ import WeuiRadioGroup from "@/components/weui/WeuiRadioGroup.vue";
 @Component({
   components: {
     WeuiCell,
+    WeuiNavCell,
     WeuiInputCell,
     WeuiCheckboxCell,
     WeuiSwitchCell,
