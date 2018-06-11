@@ -6,6 +6,6 @@ app.$mount();
 
 export default {
   config: {
-    navigationBarTitleText: "Other"
+    navigationBarTitleText: "TabBar  组件"
   }
 };

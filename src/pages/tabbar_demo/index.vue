@@ -1,6 +1,9 @@
 <template>
   <div class="page">
-    Other Page
+    <div class="weui-tab">
+      <div class="weui-tab__panbel"></div>
+      <weui-tab-bar :items="items" active-index="2"/>
+    </div>
   </div>
 </template>
 

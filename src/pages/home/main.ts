@@ -6,6 +6,6 @@ app.$mount();
 
 export default {
   config: {
-    navigationBarTitleText: "Meynote"
+    navigationBarTitleText: "Weui + mpvue + 小程序"
   }
 };

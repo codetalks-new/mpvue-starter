@@ -6,7 +6,7 @@
 const enum PageUrls {
   home = "pages/home/main",
 
-  other = "pages/other/main"
+  tabbarDemo = "pages/tabbar_demo/main"
 }
 
 export default PageUrls;

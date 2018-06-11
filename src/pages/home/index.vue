@@ -3,8 +3,8 @@
     <weui-cell-group title="WeuiCell 使用示例" >
       <weui-nav-cell
        hover-class="navigator-hover"
-       url="/pages/other/main"
-      title="标题文案"  detail="说明文案" />
+       url="/pages/tabbar_demo/main"
+      title="TabBar 示例"  />
       <weui-cell title="标题文案"  detail="说明文案" />
       <weui-cell icon="/static/images/ic_warn_outline.png" title="标题文案"  detail="说明文案" />
       <weui-cell title="标题文案"  access="true"/>
