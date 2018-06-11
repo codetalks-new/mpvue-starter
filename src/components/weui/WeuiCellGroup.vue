@@ -2,7 +2,9 @@
 <view>
   <view class="weui-cells__title" v-if="title">{{title}}</view>
   <view class="weui-cells" :class="{'weui-cells_after-title': title}">
-    <slot></slot>
+    <slot>
+      <span></span>
+    </slot>
   </view>
 </view>
 </template>
