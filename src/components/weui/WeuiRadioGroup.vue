@@ -1,7 +1,7 @@
 <template>
 <div>
-<view class="weui-cells__title">{{title}}</view>
-<view class="weui-cells weui-cells_after-title">
+<view class="weui-cells__title" v-if="title">{{title}}</view>
+<view class="weui-cells" :class="{'weui-cells_after-title': title}">
   <radio-group @change="radioChange">
     <label class="weui-cell weui-check__label" v-for="item in radioItems" :key="item.value">
       <radio class="weui-check" :value="item.value" :checked="item.checked" />

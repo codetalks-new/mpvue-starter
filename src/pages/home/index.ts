@@ -9,6 +9,7 @@ import WeuiInputCell from "@/components/weui/WeuiInputCell.vue";
 import WeuiSwitchCell from "@/components/weui/WeuiSwitchCell.vue";
 import WeuiCheckboxCell from "@/components/weui/WeuiCheckboxCell.vue";
 import WeuiRadioGroup from "@/components/weui/WeuiRadioGroup.vue";
+import WeuiCellGroup from "@/components/weui/WeuiCellGroup.vue";
 
 // 必须使用装饰器的方式来指定component
 @Component({
@@ -18,7 +19,8 @@ import WeuiRadioGroup from "@/components/weui/WeuiRadioGroup.vue";
     WeuiInputCell,
     WeuiCheckboxCell,
     WeuiSwitchCell,
-    WeuiRadioGroup
+    WeuiRadioGroup,
+    WeuiCellGroup
   }
 })
 class Index extends Vue implements mp.VueLifecycle, mp.PageLifecycle {

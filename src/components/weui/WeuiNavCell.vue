@@ -12,7 +12,7 @@
    :hover-stop-propagation="hoverStopPropagation"
    :hover-start-time="hoverStartTime"
    :hover-stay-time="hoverStayTime"
-   class="weui-cell weui-cell_access"
+   class="weui-cell"
    :class="{'weui-cell_access': access}"
   >
   <view class="weui-cell__hd" v-if="icon">
