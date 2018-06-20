@@ -7,6 +7,7 @@ import WeuiSwitchCell from "@/components/weui/WeuiSwitchCell.vue";
 import WeuiCheckboxCell from "@/components/weui/WeuiCheckboxCell.vue";
 import WeuiRadioGroup from "@/components/weui/WeuiRadioGroup.vue";
 import WeuiCellGroup from "@/components/weui/WeuiCellGroup.vue";
+import WeuiLoadMore from "@/components/weui/WeuiLoadMore.vue";
 import LoadingView from "@/components/LoadingView.vue";
 
 // 必须使用装饰器的方式来指定component
@@ -19,7 +20,8 @@ import LoadingView from "@/components/LoadingView.vue";
     WeuiSwitchCell,
     WeuiRadioGroup,
     WeuiCellGroup,
-    LoadingView
+    LoadingView,
+    WeuiLoadMore
   }
 })
 class Index extends Vue implements mp.VueLifecycle, mp.PageLifecycle {

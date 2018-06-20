@@ -35,6 +35,10 @@
     title="加载状态组件">
     <loading-view/>
     </weui-cell-group>
+
+    <weui-load-more loading/>
+    <weui-load-more nodata/>
+    <weui-load-more nomore/>
   </div>
 </template>
 
