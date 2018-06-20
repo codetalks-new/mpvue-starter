@@ -26,5 +26,13 @@
   "typescript.autoImportSuggestions.enabled": true,
   "favorites.resources": ["node_modules/wechat-mp-types", "node_modules/tslib"],
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "vetur.format.defaultFormatter.html": "prettier"
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "html.format.wrapAttributes": "force-aligned",
+  "html.format.wrapLineLength": 100,
+  "vetur.format.defaultFormatterOptions": {
+    "js-beautify-html": {
+      "wrap_attributes": "force-aligned",
+      "wrap_line_length": 100
+    }
+  }
 }

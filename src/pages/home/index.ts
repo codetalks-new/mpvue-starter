@@ -33,6 +33,7 @@ class Index extends Vue implements mp.VueLifecycle, mp.PageLifecycle {
     { name: "ENG", value: "英国", checked: false },
     { name: "TUR", value: "法国", checked: false }
   ];
+  texts: string[] | null = [];
   onShow() {
     // 小程序 hook
     Log.info("onShow");

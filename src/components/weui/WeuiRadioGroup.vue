@@ -1,13 +1,22 @@
 <template>
   <div>
-    <view class="weui-cells__title" v-if="title">{{title}}</view>
-    <view class="weui-cells" :class="{'weui-cells_after-title': title}">
+    <view class="weui-cells__title"
+          v-if="title">{{title}}</view>
+    <view class="weui-cells"
+          :class="{'weui-cells_after-title': title}">
       <radio-group @change="radioChange">
-        <label class="weui-cell weui-check__label" v-for="item in radioItems" :key="item.value">
-          <radio class="weui-check" :value="item.value" :checked="item.checked" />
+        <label class="weui-cell weui-check__label"
+               v-for="item in radioItems"
+               :key="item.value">
+          <radio class="weui-check"
+                 :value="item.value"
+                 :checked="item.checked" />
           <view class="weui-cell__bd">{{item.name}}</view>
-          <view class="weui-cell__ft weui-cell__ft_in-radio" v-show="item.checked">
-            <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
+          <view class="weui-cell__ft weui-cell__ft_in-radio"
+                v-show="item.checked">
+            <icon class="weui-icon-radio"
+                  type="success_no_circle"
+                  size="16"></icon>
           </view>
         </label>
       </radio-group>

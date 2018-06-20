@@ -1,13 +1,16 @@
 <template>
   <div class="load-more-footer">
-    <view v-if="loading" class="weui-loadmore">
+    <view v-if="loading"
+          class="weui-loadmore">
       <view class="weui-loading"></view>
       <view class="weui-loadmore__tips">正在加载</view>
     </view>
-    <view v-if="nodata" class="weui-loadmore weui-loadmore_line">
+    <view v-if="nodata"
+          class="weui-loadmore weui-loadmore_line">
       <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
     </view>
-    <view v-if="nomore" class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
+    <view v-if="nomore"
+          class="weui-loadmore weui-loadmore_line weui-loadmore_dot">
       <view class="weui-loadmore__tips weui-loadmore__tips_in-line weui-loadmore__tips_in-dot"></view>
     </view>
   </div>

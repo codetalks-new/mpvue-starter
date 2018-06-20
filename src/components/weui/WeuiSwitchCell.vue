@@ -2,7 +2,10 @@
   <view class="weui-cell weui-cell_switch">
     <view class="weui-cell__bd">{{title}}</view>
     <view class="weui-cell__ft">
-      <switch :checked="checked" :color="color" @change="bindchange" type="switch"></switch>
+      <switch :checked="checked"
+              :color="color"
+              @change="bindchange"
+              type="switch"></switch>
     </view>
   </view>
 </template>
