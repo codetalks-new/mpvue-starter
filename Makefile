@@ -4,15 +4,15 @@ $(shell mkdir ${DIST_DIR} )
 
 .PHONY: prepare
 prepare:
-	npm install
+	yarn install
 
 .PHONY: run
 run: prepare
-	npm run dev
+	yarn dev
 
 .PHONY: build
 build:prepare
-	npm run build --report
+	yarn build --report
 
 .PHONY: clear
 clear:
