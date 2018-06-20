@@ -24,5 +24,7 @@
   "typescript.format.insertSpaceAfterCommaDelimiter": true,
   "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
   "typescript.autoImportSuggestions.enabled": true,
-  "favorites.resources": ["node_modules/wechat-mp-types", "node_modules/tslib"]
+  "favorites.resources": ["node_modules/wechat-mp-types", "node_modules/tslib"],
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "vetur.format.defaultFormatter.html": "prettier"
 }

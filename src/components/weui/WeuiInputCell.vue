@@ -1,32 +1,12 @@
 <template>
-<view class="weui-cell weui-cell_input">
-  <view class="weui-cell__hd" v-if="label">
-    <view class="weui-label">{{label}}</view>
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd" v-if="label">
+      <view class="weui-label">{{label}}</view>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" type="text" v-model="inputValue" :password="password" :placeholder="placeholder" :placeholder-style="placeholderStyle" :placeholder-class="placeholderClass" :disabled="disabled" :maxlength="maxlength" :cursor-spacing="cursorSpacing" :focus="focus" :confirm-type="confirmType" :confirm-hold="confirmHold" :cursor="cursor" :selection-start="selectionStart" :selection-end="selectionEnd" :adjust-position="adjustPosition" @focus="bindfocus" @blur="bindblur" @confirm="bindconfirm" />
+    </view>
   </view>
-  <view class="weui-cell__bd">
-    <input class="weui-input"
-    type="text"
-    v-model="inputValue"
-    :password="password"
-    :placeholder="placeholder"
-    :placeholder-style="placeholderStyle"
-    :placeholder-class="placeholderClass"
-    :disabled="disabled"
-    :maxlength="maxlength"
-    :cursor-spacing="cursorSpacing"
-    :focus="focus"
-    :confirm-type="confirmType"
-    :confirm-hold="confirmHold"
-    :cursor="cursor"
-    :selection-start="selectionStart"
-    :selection-end="selectionEnd"
-    :adjust-position="adjustPosition"
-    @focus="bindfocus"
-    @blur="bindblur"
-    @confirm="bindconfirm"
-     />
-  </view>
-</view>
 </template>
 <script>
 export default {

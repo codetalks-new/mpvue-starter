@@ -1,30 +1,11 @@
 <template>
-  <navigator
-   :target="target"
-   :url="url"
-   :open-type="openType"
-   :delta="delta"
-   :app-id="appId"
-   :path="path"
-   :extra-data="extraData"
-   :version="version"
-   :hover-class="hoverClass"
-   :hover-stop-propagation="hoverStopPropagation"
-   :hover-start-time="hoverStartTime"
-   :hover-stay-time="hoverStayTime"
-   class="weui-cell"
-   :class="{'weui-cell_access': access}"
-  >
-  <view class="weui-cell__hd" v-if="icon">
-    <image class="hd-icon" :src="icon"/>
-  </view>
-  <view class="weui-cell__bd"> {{title}}</view>
-  <view
-    v-if="detail || access"
-   class="weui-cell__ft"
-   :class="{'weui-cell__ft_in-access': access}"
-  >{{detail}}</view>
-</navigator>
+  <navigator :target="target" :url="url" :open-type="openType" :delta="delta" :app-id="appId" :path="path" :extra-data="extraData" :version="version" :hover-class="hoverClass" :hover-stop-propagation="hoverStopPropagation" :hover-start-time="hoverStartTime" :hover-stay-time="hoverStayTime" class="weui-cell" :class="{'weui-cell_access': access}">
+    <view class="weui-cell__hd" v-if="icon">
+      <image class="hd-icon" :src="icon" />
+    </view>
+    <view class="weui-cell__bd"> {{title}}</view>
+    <view v-if="detail || access" class="weui-cell__ft" :class="{'weui-cell__ft_in-access': access}">{{detail}}</view>
+  </navigator>
 </template>
 <script>
 export default {

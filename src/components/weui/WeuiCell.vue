@@ -1,17 +1,11 @@
 <template>
-<div class="weui-cell weui-cell_access" hover-class="weui-cell_active"
-   :class="{'weui-cell_access': access}"
->
-  <view class="weui-cell__hd" v-if="icon">
-    <image class="hd-icon" :src="icon"/>
-  </view>
-  <view class="weui-cell__bd"> {{title}}</view>
-  <view
-    v-if="detail || access"
-   class="weui-cell__ft"
-   :class="{'weui-cell__ft_in-access': access}"
-  >{{detail}}</view>
-</div>
+  <div class="weui-cell weui-cell_access" hover-class="weui-cell_active" :class="{'weui-cell_access': access}">
+    <view class="weui-cell__hd" v-if="icon">
+      <image class="hd-icon" :src="icon" />
+    </view>
+    <view class="weui-cell__bd"> {{title}}</view>
+    <view v-if="detail || access" class="weui-cell__ft" :class="{'weui-cell__ft_in-access': access}">{{detail}}</view>
+  </div>
 </template>
 <script>
 export default {
