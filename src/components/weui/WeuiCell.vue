@@ -19,7 +19,7 @@ export default {
     icon: String,
     title: String,
     detail: String,
-    access: String
+    access: Boolean
   }
 };
 </script>
