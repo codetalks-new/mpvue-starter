@@ -9,4 +9,9 @@ export default {};
 
 <style lang="less">
 @import "~@/styles/loading.less";
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
