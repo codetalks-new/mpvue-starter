@@ -1,7 +1,4 @@
 import { Vue, Component } from "vue-property-decorator";
-import * as store from "@/store";
-import eventBus from "@/eventBus";
-import * as mpex from "@/mpex";
 import Log from "@/logbox";
 import WeuiCell from "@/components/weui/WeuiCell.vue";
 import WeuiNavCell from "@/components/weui/WeuiNavCell.vue";
@@ -10,6 +7,7 @@ import WeuiSwitchCell from "@/components/weui/WeuiSwitchCell.vue";
 import WeuiCheckboxCell from "@/components/weui/WeuiCheckboxCell.vue";
 import WeuiRadioGroup from "@/components/weui/WeuiRadioGroup.vue";
 import WeuiCellGroup from "@/components/weui/WeuiCellGroup.vue";
+import LoadingView from "@/components/LoadingView.vue";
 
 // 必须使用装饰器的方式来指定component
 @Component({
@@ -20,7 +18,8 @@ import WeuiCellGroup from "@/components/weui/WeuiCellGroup.vue";
     WeuiCheckboxCell,
     WeuiSwitchCell,
     WeuiRadioGroup,
-    WeuiCellGroup
+    WeuiCellGroup,
+    LoadingView
   }
 })
 class Index extends Vue implements mp.VueLifecycle, mp.PageLifecycle {

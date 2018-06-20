@@ -30,6 +30,11 @@
     </weui-cell-group>
 
     <weui-radio-group title="请选择地区" :items="items" />
+
+    <weui-cell-group
+    title="加载状态组件">
+    <loading-view/>
+    </weui-cell-group>
   </div>
 </template>
 
