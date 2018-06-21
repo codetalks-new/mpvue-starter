@@ -8,6 +8,7 @@ import WeuiCheckboxCell from "@/components/weui/WeuiCheckboxCell.vue";
 import WeuiRadioGroup from "@/components/weui/WeuiRadioGroup.vue";
 import WeuiCellGroup from "@/components/weui/WeuiCellGroup.vue";
 import WeuiLoadMore from "@/components/weui/WeuiLoadMore.vue";
+import WeuiSearchBar from "@/components/weui/WeuiSearchBar.vue";
 import LoadingView from "@/components/LoadingView.vue";
 
 // 必须使用装饰器的方式来指定component
@@ -21,7 +22,8 @@ import LoadingView from "@/components/LoadingView.vue";
     WeuiRadioGroup,
     WeuiCellGroup,
     LoadingView,
-    WeuiLoadMore
+    WeuiLoadMore,
+    WeuiSearchBar
   }
 })
 class Index extends Vue implements mp.VueLifecycle, mp.PageLifecycle {
@@ -55,6 +57,18 @@ class Index extends Vue implements mp.VueLifecycle, mp.PageLifecycle {
   }
   bindconfirm(e) {
     Log.info("bindconfirm ", e);
+  }
+  onSearchBarTextChanged(text) {
+    Log.info("SearchBar Text Changed:", text);
+  }
+  onSearchBarClearInput(e) {
+    Log.info("onSearchBarClearInput");
+  }
+  onSearchBarShowInput(e) {
+    Log.info("onSearchBarShowInput");
+  }
+  onCancelSearch(e) {
+    Log.info("onCancelSearch");
   }
 }
 
