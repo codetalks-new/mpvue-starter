@@ -1,3 +1,8 @@
+export let isDev = false;
+if (process.env.NODE_ENV === "development") {
+  isDev = true;
+}
+
 function formatNumber(n) {
   const str = n.toString();
   return str[1] ? str : `0${str}`;

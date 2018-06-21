@@ -1,10 +1,10 @@
 <template>
   <div class="page">
     <weui-search-bar placeholder="搜索球星"
-                     @change="onSearchBarTextChanged"
-                     @show-input="onSearchBarShowInput"
-                     @clear-input="onSearchBarClearInput"
-                     @cancel="onCancelSearch" />
+                     @searchbar-text-change="onSearchBarTextChanged"
+                     @searchbar-show-input="onSearchBarShowInput"
+                     @searchbar-clear-input="onSearchBarClearInput"
+                     @searchbar-cancel="onCancelSearch" />
     <weui-cell-group title="WeuiCell 使用示例">
       <weui-nav-cell hover-class="navigator-hover"
                      url="/pages/tabbar_demo/main"

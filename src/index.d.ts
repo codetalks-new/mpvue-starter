@@ -10,3 +10,5 @@ declare var console: any;
 declare interface MpEvent {
   mp: wx.InputEvent | wx.FormEvent;
 }
+
+declare var process: any;

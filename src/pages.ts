@@ -6,6 +6,8 @@
 const enum PageUrls {
   home = "pages/home/main",
 
+  list = "pages/list/main",
+
   tabbarDemo = "pages/tabbar_demo/main"
 }
 

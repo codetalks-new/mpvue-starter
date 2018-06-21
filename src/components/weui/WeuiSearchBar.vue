@@ -50,7 +50,7 @@ export default {
   methods: {
     showInput() {
       this.inputShowed = true;
-      this.$emit("show-input");
+      this.$emit("searchbar-show-input");
     },
     hideInput() {
       this.inputVal = "";
@@ -58,16 +58,16 @@ export default {
     },
     clearInput() {
       this.inputVal = "";
-      this.$emit("clear-input");
-      this.$emit("change", this.inputVal);
+      this.$emit("searchbar-clear-input");
+      this.$emit("searchbar-text-change", this.inputVal);
     },
     inputTyping(e) {
       this.inputVal = e.mp.detail.value;
-      this.$emit("change", this.inputVal);
+      this.$emit("searchbar-text-change", this.inputVal);
     },
     onTapCancelButton(e) {
       this.hideInput();
-      this.$emit("cancel", e);
+      this.$emit("searchbar-cancel", e);
     }
   }
 };
