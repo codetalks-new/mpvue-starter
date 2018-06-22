@@ -53,14 +53,21 @@ app.$mount();
  */
 export default {
   config: {
-    pages: ["^" + PageUrls.list], // 页面前带有 ^ 符号的，会被编译成首页，其他页面可以选填，我们会自动把 webpack entry 里面的入口页面加进去
+    pages: ["^" + PageUrls.gankAndroid], // 页面前带有 ^ 符号的，会被编译成首页，其他页面可以选填，我们会自动把 webpack entry 里面的入口页面加进去
     window: {
       backgroundTextStyle: "dark",
       navigationBarBackgroundColor: "#504f56",
       navigationBarTitleText: "Meynote",
       navigationBarTextStyle: "white",
       backgroundColor: "#efeff4"
-    } as mpc.WindowConfig,
+    },
+    tabBar: {
+      list: [
+        { text: "福利", pagePath: PageUrls.gankWelfare },
+        { text: "Android", pagePath: PageUrls.gankAndroid },
+        { text: "组件", pagePath: PageUrls.home }
+      ]
+    },
     debug: true
   } as mpc.AppConfig
 };

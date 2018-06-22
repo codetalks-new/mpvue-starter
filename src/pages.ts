@@ -4,9 +4,11 @@
  * 小程序页面 url 枚举列表
  */
 const enum PageUrls {
-  home = "pages/home/main",
+  gankAndroid = "pages/gank_android/main",
 
-  list = "pages/list/main",
+  gankWelfare = "pages/gank_welfare/main",
+
+  home = "pages/home/main",
 
   tabbarDemo = "pages/tabbar_demo/main"
 }

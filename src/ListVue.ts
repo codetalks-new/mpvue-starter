@@ -1,26 +1,8 @@
 import { Vue, Component } from "vue-property-decorator";
-import * as store from "@/store";
-import eventBus from "@/eventBus";
 import * as mpex from "@/mpex";
 import Log from "@/logbox";
-import WeuiSearchBar from "@/components/weui/WeuiSearchBar.vue";
-import WeuiLoadMore from "@/components/weui/WeuiLoadMore.vue";
-import LoadingView from "@/components/LoadingView.vue";
 import { apiRequest, ApiRequestOptions } from "@/request-helpers";
 
-const demoItem = {
-  _id: "5b196d0b421aa910ab3d6b3c",
-  createdAt: "2018-06-08T01:36:11.740Z",
-  desc: "2018-06-08",
-  publishedAt: "2018-06-08T00:00:00.0Z",
-  source: "web",
-  type: "\u798f\u5229",
-  url: "http://ww1.sinaimg.cn/large/0065oQSqly1fs34w0jx9jj30j60ootcn.jpg",
-  used: true,
-  who: "lijinshanmx"
-};
-
-type Welfare = typeof demoItem;
 interface GankListResponse<M> {
   error: boolean;
   results: M[];
@@ -75,6 +57,10 @@ class ListVue<M> extends Vue {
       Log.warn("PullDownRefresh was disabled");
       return;
     }
+    if (this.isRefreshing) {
+      Log.warn("isRefreshing");
+      return;
+    }
     this.isRefreshing = showLoadingView;
     this.page = 1;
     this.loadData();
@@ -83,6 +69,10 @@ class ListVue<M> extends Vue {
   loadMoreData() {
     if (!this.enableLoadMore) {
       Log.warn("LoadMore was disabled");
+      return;
+    }
+    if (this.isLoadMore) {
+      Log.warn("isLoadMore");
       return;
     }
     if (this.page > 20) {
@@ -101,6 +91,7 @@ class ListVue<M> extends Vue {
       this.isRefreshing = false;
       this.isLoadMore = false;
       this.isSearching = false;
+      wx.stopPullDownRefresh();
     };
     try {
       const startTime = new Date().getTime();
@@ -137,18 +128,24 @@ class ListVue<M> extends Vue {
     return { url: "<override this method>" };
   }
 
-  // 建议使用小程序页面的下拉刷新功能， scrollview 的下拉刷新体验不太好.
+  /**
+   * ScrollView 触顶回调
+   */
   bindScrollToTop() {
     this.refreshData();
   }
 
-  // 建议使用小程序页面的 onReachBottom 相关回调可能体验会好一些。
+  /**
+   * ScrollView 的触底回调
+   */
   bindScrollToBottom() {
     this.loadMoreData();
   }
 
   /**
    * 小程序页面页面下拉刷新回调
+   *  需要在 window 或者页面配置中开启 enableDownRefresh
+   * 当处理完数据刷新后，wx.stopPullDownRefresh可以停止当前页面的下拉刷新。
    */
   onPullDownRefresh() {
     const showLoadingView = false;
@@ -157,32 +154,12 @@ class ListVue<M> extends Vue {
 
   /**
    * 小程序页面触底回调
+   * 可以在app.json的window选项中或页面配置中设置触发距离onReachBottomDistance。
+   * 在触发距离内滑动期间，本事件只会被触发一次。
    */
   onReachBottom() {
     this.loadMoreData();
   }
 }
 
-@Component({
-  components: {
-    LoadingView,
-    WeuiLoadMore,
-    WeuiSearchBar
-  }
-})
-class Index extends ListVue<Welfare> implements mp.PageLifecycle {
-  // 如果不加这行声明， Vue 绑定的时候找不到 listItems
-  listItems: Welfare[] = [];
-  onLoad() {
-    this.refreshData();
-  }
-
-  getApiRequestOptions() {
-    const url = `http://gank.io/api/data/福利/${this.pageSize}/${this.page}`;
-    return {
-      url
-    };
-  }
-}
-
-export default Index;
+export default ListVue;

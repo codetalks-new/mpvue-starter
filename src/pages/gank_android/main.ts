@@ -6,8 +6,8 @@ app.$mount();
 
 export default {
   config: {
-    navigationBarTitleText: "干货-福利",
-    onReachBottomDistance: 50,
-    enablePullDownRefresh: false
+    navigationBarTitleText: "干货-Android",
+    enablePullDownRefresh: false,
+    backgroundTextStyle: "light"
   } as mpc.PageConfig
 };

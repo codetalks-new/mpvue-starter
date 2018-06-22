@@ -6,7 +6,7 @@
       <scroll-view class="list-view"
                    scroll-y
                    upper-threshold="80"
-                   lower-threshold="80"
+                   lower-threshold="140"
                    @scrolltoupper="bindScrollToTop"
                    @scrolltolower="bindScrollToBottom"
                    :style="scrollViewStyle">
@@ -14,6 +14,7 @@
              v-for="(item,index) in listItems"
              :key="index">
           <image class="welfare-img"
+                 @tap="onTapImg(item)"
                  mode="aspectFill"
                  :src="item.url" />
         </div>
