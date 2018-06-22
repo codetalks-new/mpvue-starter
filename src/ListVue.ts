@@ -2,17 +2,60 @@ import { Vue, Component } from "vue-property-decorator";
 import * as mpex from "@/mpex";
 import Log from "@/logbox";
 import { apiRequest, ApiRequestOptions } from "@/request-helpers";
+import { isDev } from "@/utils";
 
 interface GankListResponse<M> {
   error: boolean;
   results: M[];
 }
 
+/**
+ * ListView UI 的四种主要状态
+ */
+export const enum ListViewState {
+  /**
+   * 加载中
+   */
+  loading = 1,
+  /**
+   * 主要的加载出错，这里没有包含加载更多出错，因为加载更多出错，不应该导致主要的
+   * View 的状态变化
+   */
+  error,
+
+  /**
+   * 内容数据为空
+   */
+  nodata,
+  /**
+   * 显示内容主体
+   */
+  content
+}
+
 @Component({})
 class ListVue<M> extends Vue {
   listItems: M[];
   isRefreshing = false;
-  isLoadMore = false;
+
+  /**
+   * 加载更多状态信息
+   */
+  loadMoreState = {
+    nomore: false,
+    loading: false
+  };
+  get shouldShowLoadMoreFooter(): boolean {
+    return this.loadMoreState.loading || this.loadMoreState.nomore;
+  }
+  get isLoadingMore(): boolean {
+    return this.loadMoreState.loading;
+  }
+
+  set isLoadingMore(value: boolean) {
+    this.loadMoreState.loading = value;
+  }
+
   isSearching = false;
   pageSize = 10;
   page = 1;
@@ -40,6 +83,46 @@ class ListVue<M> extends Vue {
    * loading 等指示至少显示时间，以勉请求比较快时一晃而过
    */
   graceMillis = 1000; // one second
+
+  /**
+   * 当前 View 的状态，初始为 loading 状态
+   */
+  viewState = ListViewState.loading;
+
+  /**
+   *  默认出错错误提示消息
+   */
+  defaultErrorMessage = "请求出错";
+  /**
+   * 错误提示消息
+   */
+  errorMessage = "";
+
+  get activeErrorMessage(): string {
+    return this.errorMessage ? this.errorMessage : this.defaultErrorMessage;
+  }
+
+  /**
+   * 数据为空时的提示
+   */
+  nodataMessage = "暂无数据";
+
+  get isLoading(): boolean {
+    return this.viewState === ListViewState.loading;
+  }
+
+  get hasError(): boolean {
+    return this.viewState === ListViewState.error;
+  }
+
+  get nodata(): boolean {
+    return this.viewState === ListViewState.nodata;
+  }
+
+  get hasContent(): boolean {
+    return this.viewState === ListViewState.content;
+  }
+
   get scrollViewStyle(): string {
     const rpx = this.scrollViewHeight * 2;
     return `height:${rpx}rpx;`;
@@ -58,7 +141,7 @@ class ListVue<M> extends Vue {
       return;
     }
     if (this.isRefreshing) {
-      Log.warn("isRefreshing");
+      Log.warn("already in Refreshing state");
       return;
     }
     this.isRefreshing = showLoadingView;
@@ -71,8 +154,8 @@ class ListVue<M> extends Vue {
       Log.warn("LoadMore was disabled");
       return;
     }
-    if (this.isLoadMore) {
-      Log.warn("isLoadMore");
+    if (this.isLoadingMore) {
+      Log.warn("already in LoadingMore state");
       return;
     }
     if (this.page > 20) {
@@ -81,7 +164,7 @@ class ListVue<M> extends Vue {
       );
       return;
     }
-    this.isLoadMore = true;
+    this.isLoadingMore = true;
     this.page++;
     this.loadData();
   }
@@ -89,10 +172,13 @@ class ListVue<M> extends Vue {
   async loadData() {
     const cleanup = () => {
       this.isRefreshing = false;
-      this.isLoadMore = false;
+      this.isLoadingMore = false;
       this.isSearching = false;
       wx.stopPullDownRefresh();
     };
+    if (this.page === 1) {
+      this.loadMoreState.nomore = false;
+    }
     try {
       const startTime = new Date().getTime();
       const resp = await apiRequest<GankListResponse<M>>(
@@ -101,10 +187,16 @@ class ListVue<M> extends Vue {
       const endTime = new Date().getTime();
 
       const done = () => {
-        if (this.isLoadMore) {
+        if (this.isLoadingMore) {
           this.listItems.push(...resp.results);
+          this.loadMoreState.nomore = resp.results.length < this.pageSize;
         } else {
           this.listItems = resp.results;
+        }
+        if (this.listItems.length < 1) {
+          this.switchToNodataState();
+        } else {
+          this.switchToContentState();
         }
         cleanup();
       };
@@ -116,16 +208,41 @@ class ListVue<M> extends Vue {
         setTimeout(done, 1000 - elapsed);
       }
     } catch (error) {
-      if (this.isLoadMore) {
+      if (this.isLoadingMore) {
         this.page--; // fallback
       }
       cleanup();
-      mpex.showWarn(error);
+      const errorMessage = "请求出错:" + error;
+      if (!this.isLoadingMore) {
+        this.errorMessage = errorMessage;
+        this.switchToErrorState();
+      } else {
+        mpex.showWarn(errorMessage);
+      }
     }
   }
 
+  switchToLoadingState() {
+    this.viewState = ListViewState.loading;
+  }
+
+  switchToNodataState() {
+    this.viewState = ListViewState.nodata;
+  }
+
+  switchToErrorState() {
+    this.viewState = ListViewState.error;
+  }
+
+  switchToContentState() {
+    this.viewState = ListViewState.content;
+  }
+
   getApiRequestOptions(): ApiRequestOptions {
-    return { url: "<override this method>" };
+    if (isDev) {
+      throw new Error("Please override this method");
+    }
+    return { url: "<please override this method>" };
   }
 
   /**
@@ -159,6 +276,10 @@ class ListVue<M> extends Vue {
    */
   onReachBottom() {
     this.loadMoreData();
+  }
+
+  onTapReloadButton(e) {
+    this.loadData();
   }
 }
 

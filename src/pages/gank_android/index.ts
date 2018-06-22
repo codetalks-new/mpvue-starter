@@ -31,7 +31,6 @@ class Index extends ListVue<Post> implements mp.PageLifecycle {
   // 如果不加这行声明， Vue 绑定的时候找不到 listItems
   listItems: Post[] = [];
   onLoad() {
-    this.isRefreshing = true; // showLoading
     this.loadData();
   }
 

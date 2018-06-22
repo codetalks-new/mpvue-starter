@@ -29,7 +29,6 @@ class Index extends ListVue<Welfare> implements mp.PageLifecycle {
   // 如果不加这行声明， Vue 绑定的时候找不到 listItems
   listItems: Welfare[] = [];
   onLoad() {
-    this.isRefreshing = true; // showLoading
     this.loadData();
   }
 

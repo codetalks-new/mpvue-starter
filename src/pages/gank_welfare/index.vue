@@ -19,7 +19,7 @@
                  :src="item.url" />
         </div>
       </scroll-view>
-      <weui-load-more v-if="isLoadMore" />
+      <weui-load-more v-if="isLoadingMore" />
     </div>
   </div>
 </template>
