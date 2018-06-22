@@ -5,7 +5,7 @@
       <weui-search-bar v-if="showSearchBar" />
       <scroll-view class="list-view"
                    scroll-y
-                   upper-threshold="100"
+                   upper-threshold="80"
                    lower-threshold="80"
                    @scrolltoupper="bindScrollToTop"
                    @scrolltolower="bindScrollToBottom"

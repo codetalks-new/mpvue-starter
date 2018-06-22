@@ -34,10 +34,30 @@ class ListVue<M> extends Vue {
   isSearching = false;
   pageSize = 10;
   page = 1;
+  /**
+   * 是否显示 SearchBar
+   */
   showSearchBar = false;
   windowHeight = 667; // 默认按 iPhone 6 高度
-  // Note Scroll View 必须要指定 Height 才行.
+  /**
+   * 是否启用上拉加载更多
+   */
+  enableLoadMore = true;
+
+  /**
+   * 是否启用下拉刷新
+   */
+  enablePullDownRefresh = true;
+  /**
+   *
+   * ScrollView 高度
+   * Scroll View 必须要指定 Height 才可以触发，触顶，触底等事件
+   */
   scrollViewHeight = 572; // px
+  /**
+   * loading 等指示至少显示时间，以勉请求比较快时一晃而过
+   */
+  graceMillis = 1000; // one second
   get scrollViewStyle(): string {
     const rpx = this.scrollViewHeight * 2;
     return `height:${rpx}rpx;`;
@@ -50,32 +70,96 @@ class ListVue<M> extends Vue {
     this.scrollViewHeight = sinfo.windowHeight;
   }
 
-  refreshData() {
+  refreshData(showLoadingView: boolean = true) {
+    if (!this.enablePullDownRefresh) {
+      Log.warn("PullDownRefresh was disabled");
+      return;
+    }
+    this.isRefreshing = showLoadingView;
     this.page = 1;
     this.loadData();
   }
 
   loadMoreData() {
+    if (!this.enableLoadMore) {
+      Log.warn("LoadMore was disabled");
+      return;
+    }
+    if (this.page > 20) {
+      Log.warn(
+        "如果有确实需要加载超过20页，请删除此处判断逻辑,不过真的需要吗？"
+      );
+      return;
+    }
+    this.isLoadMore = true;
     this.page++;
     this.loadData();
   }
 
   async loadData() {
+    const cleanup = () => {
+      this.isRefreshing = false;
+      this.isLoadMore = false;
+      this.isSearching = false;
+    };
     try {
-      this.isRefreshing = true;
+      const startTime = new Date().getTime();
       const resp = await apiRequest<GankListResponse<M>>(
         this.getApiRequestOptions()
       );
-      this.listItems = resp.results;
-      this.isRefreshing = false;
+      const endTime = new Date().getTime();
+
+      const done = () => {
+        if (this.isLoadMore) {
+          this.listItems.push(...resp.results);
+        } else {
+          this.listItems = resp.results;
+        }
+        cleanup();
+      };
+
+      const elapsed = endTime - startTime;
+      if (elapsed > 1000) {
+        done();
+      } else {
+        setTimeout(done, 1000 - elapsed);
+      }
     } catch (error) {
-      this.isRefreshing = false;
+      if (this.isLoadMore) {
+        this.page--; // fallback
+      }
+      cleanup();
       mpex.showWarn(error);
     }
   }
 
   getApiRequestOptions(): ApiRequestOptions {
     return { url: "<override this method>" };
+  }
+
+  // 建议使用小程序页面的下拉刷新功能， scrollview 的下拉刷新体验不太好.
+  bindScrollToTop() {
+    this.refreshData();
+  }
+
+  // 建议使用小程序页面的 onReachBottom 相关回调可能体验会好一些。
+  bindScrollToBottom() {
+    this.loadMoreData();
+  }
+
+  /**
+   * 小程序页面页面下拉刷新回调
+   */
+  onPullDownRefresh() {
+    const showLoadingView = false;
+    this.refreshData(showLoadingView);
+  }
+
+  /**
+   * 小程序页面触底回调
+   */
+  onReachBottom() {
+    this.loadMoreData();
   }
 }
 
@@ -86,7 +170,7 @@ class ListVue<M> extends Vue {
     WeuiSearchBar
   }
 })
-class Index extends ListVue<Welfare> {
+class Index extends ListVue<Welfare> implements mp.PageLifecycle {
   // 如果不加这行声明， Vue 绑定的时候找不到 listItems
   listItems: Welfare[] = [];
   onLoad() {
@@ -98,14 +182,6 @@ class Index extends ListVue<Welfare> {
     return {
       url
     };
-  }
-
-  bindScrollToTop() {
-    this.refreshData();
-  }
-
-  bindScrollToBottom() {
-    this.loadMoreData();
   }
 }
 

@@ -6,6 +6,8 @@ app.$mount();
 
 export default {
   config: {
-    navigationBarTitleText: "干货-福利"
-  }
+    navigationBarTitleText: "干货-福利",
+    onReachBottomDistance: 50,
+    enablePullDownRefresh: false
+  } as mpc.PageConfig
 };
