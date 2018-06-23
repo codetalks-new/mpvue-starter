@@ -2,7 +2,6 @@ import { Vue, Component } from "vue-property-decorator";
 import WeuiSearchBar from "@/components/weui/WeuiSearchBar.vue";
 import WeuiLoadMore from "@/components/weui/WeuiLoadMore.vue";
 import LoadingView from "@/components/LoadingView.vue";
-import ListVueLayout from "@/components/ListVueLayout.vue";
 import ListVue from "@/ListVue";
 
 const postDemo = {
@@ -23,7 +22,9 @@ type Post = typeof postDemo;
 
 @Component({
   components: {
-    ListVueLayout
+    LoadingView,
+    WeuiLoadMore,
+    WeuiSearchBar
   }
 })
 class Index extends ListVue<Post> implements mp.PageLifecycle {
@@ -31,6 +32,7 @@ class Index extends ListVue<Post> implements mp.PageLifecycle {
   listItems: Post[] = [];
   onLoad() {
     this.loadData();
+    this.showSearchBar = true;
     // setTimeout(() => {
     //   this.switchToErrorState();
     // }, 1000);

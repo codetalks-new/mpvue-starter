@@ -7,10 +7,13 @@
               size="14"></icon>
         <input class="weui-search-bar__input"
                type="text"
+               confirm-type="search"
+               maxlength="20"
                :placeholder="placeholder"
                :value="inputVal"
                :focus="inputShowed"
-               @input="inputTyping" />
+               @input="inputTyping"
+               @confirm="confirmSearch" />
         <view class="weui-icon-clear"
               v-show="inputVal.length > 0"
               @tap="clearInput">
@@ -50,7 +53,7 @@ export default {
   methods: {
     showInput() {
       this.inputShowed = true;
-      this.$emit("searchbar-show-input");
+      this.$emit("show-input");
     },
     hideInput() {
       this.inputVal = "";
@@ -58,16 +61,19 @@ export default {
     },
     clearInput() {
       this.inputVal = "";
-      this.$emit("searchbar-clear-input");
-      this.$emit("searchbar-text-change", this.inputVal);
+      this.$emit("clear-input");
+      this.$emit("text-change", this.inputVal);
     },
     inputTyping(e) {
       this.inputVal = e.mp.detail.value;
-      this.$emit("searchbar-text-change", this.inputVal);
+      this.$emit("text-change", this.inputVal);
+    },
+    confirmSearch(e) {
+      this.$emit("confirm", this.inputVal);
     },
     onTapCancelButton(e) {
       this.hideInput();
-      this.$emit("searchbar-cancel", e);
+      this.$emit("cancel", e);
     }
   }
 };

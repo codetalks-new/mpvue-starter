@@ -3,6 +3,9 @@ import * as mpex from "@/mpex";
 import Log from "@/logbox";
 import { apiRequest, ApiRequestOptions } from "@/request-helpers";
 import { isDev } from "@/utils";
+import WeuiSearchBar from "@/components/weui/WeuiSearchBar.vue";
+import WeuiLoadMore from "@/components/weui/WeuiLoadMore.vue";
+import LoadingView from "@/components/LoadingView.vue";
 
 interface GankListResponse<M> {
   error: boolean;
@@ -296,6 +299,32 @@ class ListVue<M> extends Vue {
       nodataMessage: this.nodataMessage,
       activeErrorMessage: this.activeErrorMessage
     };
+  }
+
+  /**
+   * 搜索栏的输入框已经显示 (说明用户点击了搜索图标)
+   */
+  onSearchBarShowInput() {}
+
+  /**
+   * 用户点击了搜索栏的输入框右边的清除按钮。
+   */
+  onSearchBarClearInput() {}
+
+  /**
+   * 搜索输入栏的文字变化了
+   */
+  onSearchBarTextChange(newText: string) {
+    Log.debug("SearchBar newText:", newText);
+  }
+
+  /**
+   * 用户点击了搜索栏的取消按钮
+   */
+  onSearchBarCancel() {}
+
+  onSearchBarConfirm(searchText: string) {
+    Log.debug("SearchBar searchText:", searchText);
   }
 }
 

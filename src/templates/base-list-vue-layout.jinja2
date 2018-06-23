@@ -1,12 +1,19 @@
   <div class="page">
+    <weui-search-bar v-if="showSearchBar"
+      @show-input="onSearchBarShowInput"
+      @clear-input="onSearchBarClearInput"
+      @text-change="onSearchBarTextChange"
+      @cancel="onSearchBarCancel"
+      @confirm="onSearchBarConfirm"
+      />
     <loading-view v-if="isRefreshing || isLoading" />
     <div v-if="hasContent"
          class="list-view-wrapper">
-      <weui-search-bar v-if="showSearchBar" />
+
       <scroll-view class="list-view"
                    scroll-y
-                   upper-threshold="80"
-                   lower-threshold="140"
+                   upper-threshold="40"
+                   lower-threshold="40"
                    @scrolltoupper="bindScrollToTop"
                    @scrolltolower="bindScrollToBottom"
                    :style="scrollViewStyle">

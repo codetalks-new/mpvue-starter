@@ -1,12 +1,12 @@
-<template lang="nunjucks">
-{% extends "src/templates/base-list-vue-layout.jinja2" %}
-{% block listItems %}
-      <div class="post-item"
-           v-for="(item,index) in listItems"
-           :key="index">
-        <div class="post-title">{%raw%}{{item.desc}}{% endraw %}</div>
-      </div>
-{% endblock %}
+<template  lang="nunjucks">
+  {% extends "src/templates/base-list-vue-layout.jinja2" %}
+  {% block listItems %}
+  <div class="post-item"
+       v-for="(item,index) in listItems"
+       :key="index">
+    <div class="post-title">{%raw%}{{item.desc}}{% endraw %}</div>
+  </div>
+  {% endblock %}
 </template>
 
 <style>
