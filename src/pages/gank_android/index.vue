@@ -1,4 +1,7 @@
 <template  lang="nunjucks">
+  {% set placeholder = "搜索Android" %}
+  {% set upperThreshold = 50 %}
+  {% set lowerThreshold = 50 %}
   {% extends "src/templates/base-list-vue-layout.jinja2" %}
   {% block listItems %}
   <div class="post-item"

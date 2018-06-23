@@ -1,5 +1,10 @@
+{#  支持如下变量 = 后面是默认值 #}
+{# placeholder = 搜索 #}
+{# upperThreshold = 40 #}
+{# lowerThreshold = 40 #}
   <div class="page">
     <weui-search-bar v-if="showSearchBar"
+      placeholder="{{placeholder|default('搜索')}}"
       @show-input="onSearchBarShowInput"
       @clear-input="onSearchBarClearInput"
       @text-change="onSearchBarTextChange"
@@ -12,8 +17,8 @@
 
       <scroll-view class="list-view"
                    scroll-y
-                   upper-threshold="40"
-                   lower-threshold="40"
+                   upper-threshold="{{upperThreshold|default(40)}}"
+                   lower-threshold="{{lowerThreshold|default(40)}}"
                    @scrolltoupper="bindScrollToTop"
                    @scrolltolower="bindScrollToBottom"
                    :style="scrollViewStyle">
