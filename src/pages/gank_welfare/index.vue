@@ -1,15 +1,6 @@
-<template>
-  <div class="page">
-    <div class="list-view-wrapper">
-      <loading-view v-if="isRefreshing" />
-      <weui-search-bar v-if="showSearchBar" />
-      <scroll-view class="list-view"
-                   scroll-y
-                   upper-threshold="80"
-                   lower-threshold="140"
-                   @scrolltoupper="bindScrollToTop"
-                   @scrolltolower="bindScrollToBottom"
-                   :style="scrollViewStyle">
+<template lang="nunjucks">
+{% extends "src/templates/base-list-vue-layout.jinja2" %}
+{% block listItems %}
         <div class="welfare"
              v-for="(item,index) in listItems"
              :key="index">
@@ -18,10 +9,7 @@
                  mode="aspectFill"
                  :src="item.url" />
         </div>
-      </scroll-view>
-      <weui-load-more v-if="isLoadingMore" />
-    </div>
-  </div>
+{% endblock %}
 </template>
 
 <script lang="ts" src="./index.ts">

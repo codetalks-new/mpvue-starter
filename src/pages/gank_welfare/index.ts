@@ -18,13 +18,7 @@ const demoItem = {
 
 type Welfare = typeof demoItem;
 
-@Component({
-  components: {
-    LoadingView,
-    WeuiLoadMore,
-    WeuiSearchBar
-  }
-})
+@Component({})
 class Index extends ListVue<Welfare> implements mp.PageLifecycle {
   // 如果不加这行声明， Vue 绑定的时候找不到 listItems
   listItems: Welfare[] = [];

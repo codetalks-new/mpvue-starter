@@ -48,6 +48,9 @@ module.exports = {
     },
     symlinks: false
   },
+  resolveLoader: {
+    modules: ["node_modules", path.resolve(__dirname, "loaders")]
+  },
   module: {
     rules: [
       {
@@ -140,6 +143,11 @@ module.exports = {
           name: utils.assetsPath("fonts/[name].[ext]")
         }
       }
+      // {  // mpvue 通过 consolidate 来加载模板，所以这里用不到
+      //   test: /\.(jinja2|njk|nunjucks)$/,
+      //   exclude: /node_modules/,
+      //   loader: "nunjucks-plain-loader"
+      // }
     ]
   },
   plugins: [new MpvuePlugin()]

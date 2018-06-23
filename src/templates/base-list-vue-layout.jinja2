@@ -1,0 +1,42 @@
+  <div class="page">
+    <loading-view v-if="isRefreshing || isLoading" />
+    <div v-if="hasContent"
+         class="list-view-wrapper">
+      <weui-search-bar v-if="showSearchBar" />
+      <scroll-view class="list-view"
+                   scroll-y
+                   upper-threshold="80"
+                   lower-threshold="140"
+                   @scrolltoupper="bindScrollToTop"
+                   @scrolltolower="bindScrollToBottom"
+                   :style="scrollViewStyle">
+                   {% block listItems %}
+                   {% endblock %}
+      </scroll-view>
+      <weui-load-more v-if="shouldShowLoadMoreFooter"
+                      :loading="loadMoreState.loading"
+                      :nomore="loadMoreState.nomore" />
+    </div>
+    <div v-if="nodata || hasError"
+         class="list-msg-box weui-msg">
+      <view class="weui-msg__icon-area">
+        <icon type="info"
+              size="64"></icon>
+      </view>
+      <view class="weui-msg__text-area">
+        {% raw %}
+        <view v-if="nodata"
+              class="weui-msg__title">{{nodataMessage}}</view>
+        <view v-if="hasError"
+              class="weui-msg__title">{{activeErrorMessage}}</view>
+        {% endraw %}
+      </view>
+      <view class="weui-msg__opr-area">
+        <view class="weui-btn-area">
+          <button class="weui-btn"
+                  @tap="onTapReloadButton"
+                  type="primary">重试?</button>
+        </view>
+      </view>
+    </div>
+  </div>

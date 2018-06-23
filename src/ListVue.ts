@@ -281,6 +281,22 @@ class ListVue<M> extends Vue {
   onTapReloadButton(e) {
     this.loadData();
   }
+
+  get layoutState() {
+    return {
+      isRefreshing: this.isRefreshing,
+      isLoading: this.isLoading,
+      hasContent: this.hasContent,
+      showSearchBar: this.showSearchBar,
+      scrollViewStyle: this.scrollViewStyle,
+      shouldShowLoadMoreFooter: this.shouldShowLoadMoreFooter,
+      loadMoreState: this.loadMoreState,
+      nodata: this.nodata,
+      hasError: this.hasError,
+      nodataMessage: this.nodataMessage,
+      activeErrorMessage: this.activeErrorMessage
+    };
+  }
 }
 
 export default ListVue;
