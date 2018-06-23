@@ -4,7 +4,7 @@
 {# lowerThreshold = 40 #}
   <div class="page">
     <weui-search-bar v-if="showSearchBar"
-      placeholder="{{placeholder|default('搜索')}}"
+      placeholder="{{placeholder or '搜索'}}"
       @show-input="onSearchBarShowInput"
       @clear-input="onSearchBarClearInput"
       @text-change="onSearchBarTextChange"
@@ -17,8 +17,8 @@
 
       <scroll-view class="list-view"
                    scroll-y
-                   upper-threshold="{{upperThreshold|default(40)}}"
-                   lower-threshold="{{lowerThreshold|default(40)}}"
+                   upper-threshold="{{upperThreshold or 40}}"
+                   lower-threshold="{{lowerThreshold or 40}}"
                    @scrolltoupper="bindScrollToTop"
                    @scrolltolower="bindScrollToBottom"
                    :style="scrollViewStyle">
