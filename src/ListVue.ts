@@ -38,7 +38,7 @@ export const enum ListViewState {
 
 @Component({})
 class ListVue<M> extends Vue {
-  listItems: M[];
+  listItems: M[] = [];
   isRefreshing = false;
 
   /**
@@ -297,7 +297,8 @@ class ListVue<M> extends Vue {
       nodata: this.nodata,
       hasError: this.hasError,
       nodataMessage: this.nodataMessage,
-      activeErrorMessage: this.activeErrorMessage
+      activeErrorMessage: this.activeErrorMessage,
+      listItems: this.listItems
     };
   }
 
